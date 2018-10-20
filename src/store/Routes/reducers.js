@@ -36,7 +36,7 @@ export function routes(state = initialState, action) {
       return {
         ...state,
         isFetching: false,
-        numOfRoutes: action.payload.numOfRoutes
+        numOfRoutes: action.payload.numberRoutes
       };
     case NUM_OF_ROUTES_ERROR:
       return {
