@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import '../../../shared.scss';
 import RoutesContainer from '../../Routes/containers/RoutesContainer';
 import RouteInfoContainer from '../../RouteInfo/containers/RouteInfoContainer';
-import RoutesPage from '../../Routes/components/RoutesPage';
 import { connect } from 'react-redux';
 import { getRoutes, getNumOfRoutes } from '../../../store/Routes/actions';
 import { numOfRoutesSelector } from '../../../store/Routes/selectors';

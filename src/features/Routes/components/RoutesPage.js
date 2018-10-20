@@ -18,17 +18,13 @@ class RoutesContainer extends Component {
     }
 
     render() {
+        console.log(this.props);
         return (
-            <React.Component>
-                <Container>
-                    <Row>
-                        {this.createRouteCards()}
-                    </Row>
-                </Container>
-                <Pagination>
-                    {this.createPagination()}
-                </Pagination>
-          </React.Component>
+            <Container>
+                <Row>
+                    {this.createRouteCards()}
+                </Row>
+            </Container>
         );
     }
 }

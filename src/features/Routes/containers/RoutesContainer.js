@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Link } from "react-router-dom";
+import { Route, Link } from "react-router-dom";
 import { Pagination, PaginationItem, PaginationLink } from 'reactstrap';
+import RoutesPage from '../../Routes/components/RoutesPage';
 
 
 class RoutesContainer extends Component {
@@ -11,9 +12,12 @@ class RoutesContainer extends Component {
         for(var i = 0; i < numOfPages; i++) {
             paginationItems.push(
                 <PaginationItem>
-                    <PaginationLink to={`/${i + 1}`} >
-                        {i + 1}
+                                            <Link to={`/${i + 1}`}>
+
+                    <PaginationLink>
+                            {i + 1}
                     </PaginationLink>
+                    </Link>
                 </PaginationItem>
             );
         }
@@ -23,7 +27,7 @@ class RoutesContainer extends Component {
     render() {
         return (
             <div>
-                {this.props.children}
+                <Route path="/:pageNum" component={RoutesPage}/>
                 <Pagination>
                     {this.createPagination()}
                 </Pagination>
