@@ -5,3 +5,20 @@
         background-color: lightblue;
     }
 }
+
+.routes-pagination {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-self: flex-end
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.rating {
+    margin-top: 5px;
+}

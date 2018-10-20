@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Route, Link } from "react-router-dom";
-import { Pagination, PaginationItem, PaginationLink } from 'reactstrap';
+import { Pagination, PaginationItem, PaginationLink, Container, Row } from 'reactstrap';
 import RoutesPage from '../../Routes/components/RoutesPage';
 
 
@@ -26,12 +26,14 @@ class RoutesContainer extends Component {
     render() {
         const { routes } = this.props;
         return (
-            <div>
+            <Container>
                 <Route path="/:pageNum?" render={props => <RoutesPage {...props} routes={routes} />}/>
-                <Pagination>
-                    {this.createPagination()}
-                </Pagination>
-            </div>
+                <Row className='routes-pagination'>
+                    <Pagination>
+                        {this.createPagination()}
+                    </Pagination>
+                </Row>
+            </Container>
         );
     }
 }

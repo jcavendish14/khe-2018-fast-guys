@@ -16,11 +16,9 @@ class RoutesContainer extends Component {
 
     render() {
         return (
-            <Container>
-                <Row>
-                    {this.createRouteCards()}
-                </Row>
-            </Container>
+            <Row>
+                {this.createRouteCards()}
+            </Row>
         );
     }
 }
