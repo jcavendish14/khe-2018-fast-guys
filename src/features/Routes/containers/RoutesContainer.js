@@ -27,7 +27,7 @@ class RoutesContainer extends Component {
         const { routes } = this.props;
         return (
             <div>
-                <Route path="/:pageNum" render={props => <RoutesPage {...props} routes={routes} />}/>
+                <Route path="/:pageNum?" render={props => <RoutesPage {...props} routes={routes} />}/>
                 <Pagination>
                     {this.createPagination()}
                 </Pagination>

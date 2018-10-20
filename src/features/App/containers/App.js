@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { getRoutes, getNumOfRoutes } from '../../../store/Routes/actions';
 import { numOfRoutesSelector, currentPageSelector, routesOnSelectedPageSelector } from '../../../store/Routes/selectors';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Navbar, NavbarBrand } from 'reactstrap';
 
 
 class App extends Component {
@@ -18,26 +19,31 @@ class App extends Component {
   render() {
     const { numOfRoutes, currentPage, routes } = this.props;
     return (
-      <div className="app__container">
-        <Router>
-          <Switch>
-            <Route exact path="/:pageNum" render={props => 
-              <RoutesContainer 
-                {...props} 
-                numOfRoutes={numOfRoutes}
-                currentPage={currentPage}
-                routes={routes}
-              />}
-            />
-            <Route path="/route/:routeId" render={props => 
-              <RouteInfoContainer
-                {...props} 
-                currentPage={currentPage}
-              />}
-            />
-          </Switch>
-        </Router>
-      </div>
+      <React.Fragment>
+        <Navbar color="light" light expand="md">
+            <NavbarBrand href="/">Fast Guys</NavbarBrand>
+        </Navbar>
+        <div className="app__container">
+          <Router>
+            <Switch>
+              <Route exact path="/:pageNum?" render={props => 
+                <RoutesContainer 
+                  {...props} 
+                  numOfRoutes={numOfRoutes}
+                  currentPage={currentPage}
+                  routes={routes}
+                />}
+              />
+              <Route path="/route/:routeId" render={props => 
+                <RouteInfoContainer
+                  {...props} 
+                  currentPage={currentPage}
+                />}
+              />
+            </Switch>
+          </Router>
+        </div>
+      </React.Fragment>
     );
   }
 }
