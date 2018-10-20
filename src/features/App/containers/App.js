@@ -2,22 +2,44 @@ import React, { Component } from 'react';
 import '../../../shared.scss';
 import RoutesContainer from '../../Routes/containers/RoutesContainer';
 import RouteInfoContainer from '../../RouteInfo/containers/RouteInfoContainer';
-import { Router, Route, browserHistory } from 'react-router'
-import { syncHistoryWithStore } from 'react-router-redux'
+import RoutesPage from '../../Routes/components/RoutesPage';
+import { connect } from 'react-redux';
+import { getRoutes, getNumOfRoutes } from '../../../store/Routes/actions';
+import { numOfRoutesSelector } from '../../../store/Routes/selectors';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+
 
 class App extends Component {
-  render() {
-    const history = syncHistoryWithStore(browserHistory, this.props.store)
+  componentDidMount() {
+    this.props.getNumOfRoutes();
+  }
 
+  render() {
     return (
       <div className="app__container">
-        <Router history={history}>
-          <Route path="/" component={RoutesContainer} />
-          <Route path="/route/:routeId" component={RouteInfoContainer} />
+        <Router>
+          <Switch>
+            <Route path="/" render={props => <RoutesContainer {...props} numOfRoutes={this.props.numOfRoutes}/>}/>
+            <Route path="/route/:routeId" component={RouteInfoContainer} />
+          </Switch>
         </Router>
       </div>
     );
   }
 }
 
-export default App;
+const mapStateToProps = state => ({
+  numOfRoutes: numOfRoutesSelector(state)
+});
+
+const mapDispatchToProps = dispatch => ({
+  getRoutes: pageNumber => {
+      dispatch(getRoutes(pageNumber));
+  },
+  getNumOfRoutes: () => {dispatch(getNumOfRoutes())}
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);

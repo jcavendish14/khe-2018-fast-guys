@@ -1,39 +1,35 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { Container, Row, Col } from 'reactstrap';
-import RouteCard from '../components/RouteCard';
+import { BrowserRouter as Link } from "react-router-dom";
+import { Pagination, PaginationItem, PaginationLink } from 'reactstrap';
+
 
 class RoutesContainer extends Component {
-    createRouteCards() {
-        const routes = [0, 1, 2, 3, 4, 5, 6, 7, 8]
-        const routeCards = routes.map(route => {
-            return(
-                <Col xs="12" md="4">
-                    <RouteCard routeId={route}/>
-                </Col>
+    createPagination() {
+        const { numOfRoutes } = this.props;
+        const numOfPages = Math.ceil(numOfRoutes / 9);
+        let paginationItems = [];
+        for(var i = 0; i < numOfPages; i++) {
+            paginationItems.push(
+                <PaginationItem>
+                    <PaginationLink to={`/${i + 1}`} >
+                        {i + 1}
+                    </PaginationLink>
+                </PaginationItem>
             );
-        });
-        return routeCards;
+        }
+        return paginationItems; 
     }
 
     render() {
         return (
-            <Container>
-                <Row>
-                    {this.createRouteCards()}
-                </Row>
-            </Container>
+            <div>
+                {this.props.children}
+                <Pagination>
+                    {this.createPagination()}
+                </Pagination>
+            </div>
         );
     }
 }
 
-const mapStateToProps = state => ({
-});
-
-const mapDispatchToProps = dispatch => ({
-});
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(RoutesContainer);
+export default RoutesContainer;
