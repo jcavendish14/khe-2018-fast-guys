@@ -6,7 +6,8 @@ export const mockResponse = [
         "rating":4.3,
         "routeId":2,
         "state":"OH",
-        "userId":123
+        "userId":123,
+        "username": 'jdawg'
     },
     {
         "city":"Columbus",
@@ -15,7 +16,8 @@ export const mockResponse = [
         "rating":1.3,
         "routeId":3,
         "state":"OH",
-        "userId":125
+        "userId":125,
+        "username": 'johnson'
     },
     {
         "city":"Shaker Heights",
@@ -24,7 +26,8 @@ export const mockResponse = [
         "rating":3.7,
         "routeId":4,
         "state":"OH",
-        "userId":126
+        "userId":126,
+        "username": 'hot girl behind us'
     },
 ]
 

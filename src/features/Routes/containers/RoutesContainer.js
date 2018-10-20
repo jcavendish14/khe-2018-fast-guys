@@ -12,11 +12,10 @@ class RoutesContainer extends Component {
         for(var i = 0; i < numOfPages; i++) {
             paginationItems.push(
                 <PaginationItem>
-                                            <Link to={`/${i + 1}`}>
-
-                    <PaginationLink>
+                    <Link to={`/${i + 1}`}>
+                        <PaginationLink>
                             {i + 1}
-                    </PaginationLink>
+                        </PaginationLink>
                     </Link>
                 </PaginationItem>
             );
@@ -25,9 +24,10 @@ class RoutesContainer extends Component {
     }
 
     render() {
+        const { routes } = this.props;
         return (
             <div>
-                <Route path="/:pageNum" component={RoutesPage}/>
+                <Route path="/:pageNum" render={props => <RoutesPage {...props} routes={routes} />}/>
                 <Pagination>
                     {this.createPagination()}
                 </Pagination>

@@ -1,6 +1,7 @@
 import {
     ROUTES_REQUEST, ROUTES_SUCCESS, ROUTES_ERROR,
-    NUM_OF_ROUTES_REQUEST, NUM_OF_ROUTES_SUCCESS, NUM_OF_ROUTES_ERROR
+    NUM_OF_ROUTES_REQUEST, NUM_OF_ROUTES_SUCCESS, NUM_OF_ROUTES_ERROR,
+    GO_TO_PAGE
 } from './actionTypes';
 import { mockResponse, mockResponseNum } from './mocks';
 
@@ -55,5 +56,12 @@ export function getNumOfRoutes() {
     return dispatch => {
         dispatch(numOfRoutesRequest());
         dispatch(numOfRoutesSuccess(mockResponseNum));
+    }
+}
+
+export function goToPage(pageNumber) {
+    return {
+        type: GO_TO_PAGE,
+        payload: pageNumber
     }
 }

@@ -4,22 +4,37 @@ import RoutesContainer from '../../Routes/containers/RoutesContainer';
 import RouteInfoContainer from '../../RouteInfo/containers/RouteInfoContainer';
 import { connect } from 'react-redux';
 import { getRoutes, getNumOfRoutes } from '../../../store/Routes/actions';
-import { numOfRoutesSelector } from '../../../store/Routes/selectors';
+import { numOfRoutesSelector, currentPageSelector, routesOnSelectedPageSelector } from '../../../store/Routes/selectors';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 
 class App extends Component {
   componentDidMount() {
-    this.props.getNumOfRoutes();
+    const { getNumOfRoutes, getRoutes, currentPage } = this.props;
+    getNumOfRoutes();
+    getRoutes(currentPage);
   }
 
   render() {
+    const { numOfRoutes, currentPage, routes } = this.props;
     return (
       <div className="app__container">
         <Router>
           <Switch>
-            <Route path="/" render={props => <RoutesContainer {...props} numOfRoutes={this.props.numOfRoutes}/>}/>
-            <Route path="/route/:routeId" component={RouteInfoContainer} />
+            <Route exact path="/:pageNum" render={props => 
+              <RoutesContainer 
+                {...props} 
+                numOfRoutes={numOfRoutes}
+                currentPage={currentPage}
+                routes={routes}
+              />}
+            />
+            <Route path="/route/:routeId" render={props => 
+              <RouteInfoContainer
+                {...props} 
+                currentPage={currentPage}
+              />}
+            />
           </Switch>
         </Router>
       </div>
@@ -28,7 +43,9 @@ class App extends Component {
 }
 
 const mapStateToProps = state => ({
-  numOfRoutes: numOfRoutesSelector(state)
+  numOfRoutes: numOfRoutesSelector(state),
+  currentPage: currentPageSelector(state),
+  routes: routesOnSelectedPageSelector(state),
 });
 
 const mapDispatchToProps = dispatch => ({
