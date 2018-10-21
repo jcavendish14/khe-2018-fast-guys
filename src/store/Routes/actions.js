@@ -34,14 +34,14 @@ export function getRoutes(pageNumber, pageSize) {
         RoutesService.getRoutePage(pageNumber, pageSize)
             .then(res => {
                 dispatch(routesSuccess({pageNumber: pageNumber, pageRoutes: res}));
-                for (let route of res) {
+                /*for (let route of res) {
                     dispatch(fileTypeRequest());
                     RoutesService.getFileByType(route.routeId, 'jpg')
                         .then(res => {
                             console.log(res);
                             dispatch(fileTypeSuccess({'routeId': route.routeId, 'snapshot':res}));
                         })
-                }
+                }*/
             });
     }
 }
