@@ -3,8 +3,8 @@ import '../../../shared.scss';
 import RoutesContainer from '../../Routes/containers/RoutesContainer';
 import RouteInfoContainer from '../../RouteInfo/containers/RouteInfoContainer';
 import { connect } from 'react-redux';
-import { getRoutes, getNumOfRoutes, getFileType, goToPage } from '../../../store/Routes/actions';
-import { numOfRoutesSelector, currentPageSelector, routesOnSelectedPageSelector, routeSnapshotSelector } from '../../../store/Routes/selectors';
+import { getRoutes, getNumOfRoutes, goToPage } from '../../../store/Routes/actions';
+import { numOfRoutesSelector, currentPageSelector, routesOnSelectedPageSelector } from '../../../store/Routes/selectors';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Navbar, NavbarBrand } from 'reactstrap';
 
@@ -17,8 +17,14 @@ class App extends Component {
     getRoutes(currentPage, this.PAGE_LENGTH);
   }
 
+  componentDidUpdate(prevProps) {
+    if(this.props.currentPage !== prevProps.currentPage) {
+      getRoutes(this.props.currentPage, this.PAGE_LENGTH);
+    }
+  }
+
   render() {
-    const { numOfRoutes, currentPage, routes, goToPage, routeSnapshots } = this.props;
+    const { numOfRoutes, currentPage, routes, goToPage } = this.props;
     return (
       <React.Fragment>
         <Navbar color="dark" dark expand="md">
@@ -34,7 +40,6 @@ class App extends Component {
                   currentPage={currentPage}
                   routes={routes}
                   goToPage={goToPage}
-                  routeSnapshots={routeSnapshots}
                 />}
               />
               <Route path="/route/:routeId" render={props => 
@@ -55,7 +60,6 @@ const mapStateToProps = state => ({
   numOfRoutes: numOfRoutesSelector(state),
   currentPage: currentPageSelector(state),
   routes: routesOnSelectedPageSelector(state),
-  routeSnapshots: routeSnapshotSelector(state)
 });
 
 const mapDispatchToProps = dispatch => ({

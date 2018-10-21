@@ -7,11 +7,6 @@ import GoogleApiComponent from '../components/GoogleApiComponent';
 import Map from '../components/Map';
 
 class RouteInfoContainer extends Component {
-
-    componentDidMount() {
-        this.props.getRouteById(4);
-    }
-
     render() {
         const {currentPage, google} = this.props;
         

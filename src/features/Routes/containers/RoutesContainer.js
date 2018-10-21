@@ -14,8 +14,8 @@ class RoutesContainer extends Component {
             const isCurrentPage = pageNum === currentPage;
             paginationItems.push(
                 <PaginationItem active={isCurrentPage}>
-                    <Link to={`/${pageNum}`}>
-                        <PaginationLink onClick={goToPage(pageNum)}>
+                    <Link to={`/${pageNum}`} onClick={() => goToPage(pageNum)}>
+                        <PaginationLink>
                             {pageNum}
                         </PaginationLink>
                     </Link>
@@ -26,10 +26,10 @@ class RoutesContainer extends Component {
     }
 
     render() {
-        const { routes, routeSnapshots } = this.props;
+        const { routes } = this.props;
         return (
             <Container>
-                <Route path="/:pageNum?" render={props => <RoutesPage {...props} routes={routes} routeSnapshots={routeSnapshots}/>}/>
+                <Route path="/:pageNum?" render={props => <RoutesPage {...props} routes={routes}/>}/>
                 <Row className='routes-pagination'>
                     <Pagination size="lg">
                         {this.createPagination()}

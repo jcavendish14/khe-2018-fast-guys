@@ -6,11 +6,7 @@ import Rating from 'react-rating';
 
 class RouteCard extends Component {
   render() {
-    const { city, description, snapshotFile, distance, rating, state, username, routeId, routeSnapshot } = this.props;
-    var url;
-    if(routeSnapshot.snapshot){
-      url = routeSnapshot.snapshot.fileName;
-    }
+    const { city, description, snapshotFile, distance, rating, state, username, routeId } = this.props;
     return (
       <Link to={`/route/${routeId}`}>
         <Card className='route-card'>

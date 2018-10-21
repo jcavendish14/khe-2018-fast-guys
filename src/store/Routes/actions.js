@@ -29,10 +29,12 @@ export function routesError(error) {
 }
 
 export function getRoutes(pageNumber, pageSize) {
+    console.log('getting routes');
     return dispatch => {
         dispatch(routesRequest());
         RoutesService.getRoutePage(pageNumber, pageSize)
             .then(res => {
+                console.log(res);
                 dispatch(routesSuccess({pageNumber: pageNumber, pageRoutes: res}));
                 /*for (let route of res) {
                     dispatch(fileTypeRequest());
@@ -71,7 +73,6 @@ export function getNumOfRoutes() {
         dispatch(numOfRoutesRequest());
         RoutesService.getNumberRoutes()
             .then(res => {
-                console.log(res);
                 dispatch(numOfRoutesSuccess(res));
             });
     }
