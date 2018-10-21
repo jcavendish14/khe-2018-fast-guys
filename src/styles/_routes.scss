@@ -1,6 +1,8 @@
 .route-card {
     margin: 10px;
     box-shadow: 3px 3px 10px black;
+    height: 380px;
+    overflow: hidden;
 
     &:hover {
         background-color: lightblue;
@@ -23,4 +25,18 @@
 
 .rating {
     margin-top: 5px;
+}
+
+
+.placeholder {
+    height: 328px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: darkgray;
+}
+
+.loading-bar {
+    width: 100%;
 }

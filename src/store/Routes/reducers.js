@@ -8,6 +8,7 @@ import {
 
 const initialState = {
   isFetching: false,
+  isFetchingRoutes: false,
   numOfRoutes: undefined,
   routeObj: undefined,
   routes: [],
@@ -20,18 +21,18 @@ export function routes(state = initialState, action) {
     case ROUTES_REQUEST:
       return {
         ...state,
-        isFetching: true
+        isFetchingRoutes: true
       };
     case ROUTES_SUCCESS:
       return {
         ...state,
-        isFetching: false,
+        isFetchingRoutes: false,
         routes: state.routes.concat(action.payload)
       };
     case ROUTES_ERROR:
       return {
         ...state,
-        isFetching: false
+        isFetchingRoutes: false
       };
     case NUM_OF_ROUTES_REQUEST:
       return {

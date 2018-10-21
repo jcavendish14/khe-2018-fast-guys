@@ -3,6 +3,8 @@ import { Card, CardImg, CardText, CardBody,
     CardTitle, CardSubtitle } from 'reactstrap';
 import { Link } from "react-router-dom";
 import Rating from 'react-rating';
+import Img from 'react-image';
+import { DotLoader } from 'react-spinners';
 
 class RouteCard extends Component {
   render() {
@@ -10,7 +12,7 @@ class RouteCard extends Component {
     return (
       <Link to={{'pathname': `/route/${routeId}`, 'state':{'routeId': routeId}}}>
         <Card className='route-card'>
-          <CardImg top width="100%" src={snapshotFile} alt="Card image cap" />
+          <Img width="100%" src={snapshotFile} loader={<div className='placeholder'><DotLoader size={100} color={'#007bff'}/></div>} />
           <CardBody>
             <CardTitle>{`${distance} mi in ${city}, ${state}`}</CardTitle>
             <CardSubtitle>{`Created by: ${username}`}</CardSubtitle>

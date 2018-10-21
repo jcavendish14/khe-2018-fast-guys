@@ -6,7 +6,6 @@ import {
     GO_TO_PAGE
 } from './actionTypes';
 import { RoutesService } from './serviceCalls';
-import { mockResponse, mockResponseNum } from './mocks';
 
 export function routesRequest() {
     return {
@@ -29,22 +28,12 @@ export function routesError(error) {
 }
 
 export function getRoutes(pageNumber, pageSize) {
-    console.log('getting routes');
     return dispatch => {
         dispatch(routesRequest());
-        RoutesService.getRoutePage(pageNumber - 1, pageSize)
-            .then(res => {
-                console.log(res);
+        RoutesService.getRoutePage(pageNumber - 1, pageSize).then(res => {
                 dispatch(routesSuccess({pageNumber: pageNumber, pageRoutes: res}));
-                /*for (let route of res) {
-                    dispatch(fileTypeRequest());
-                    RoutesService.getFileByType(route.routeId, 'jpg')
-                        .then(res => {
-                            console.log(res);
-                            dispatch(fileTypeSuccess({'routeId': route.routeId, 'snapshot':res}));
-                        })
-                }*/
-            });
+            }
+        );
     }
 }
 
