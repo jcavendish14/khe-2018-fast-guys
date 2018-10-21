@@ -42,6 +42,7 @@ class App extends Component {
                   currentPage={currentPage}
                   routes={routes}
                   goToPage={goToPage}
+                  isFetching={isFetching}
                 />}
               />
               <Route path="/route/:routeId" render={props => 

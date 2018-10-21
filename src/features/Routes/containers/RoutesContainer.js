@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Route, Link } from "react-router-dom";
 import { Pagination, PaginationItem, PaginationLink, Container, Row } from 'reactstrap';
 import RoutesPage from '../../Routes/components/RoutesPage';
-
+import { BarLoader } from 'react-spinners';
 
 class RoutesContainer extends Component {
     createPagination() {
@@ -26,9 +26,14 @@ class RoutesContainer extends Component {
     }
 
     render() {
-        const { routes } = this.props;
+        const { routes, isFetching } = this.props;
         return (
             <Container>
+                {isFetching && (
+                <Row>
+                    <BarLoader width={1000} />
+                </Row>
+                )}
                 <Route path="/:pageNum?" render={props => <RoutesPage {...props} routes={routes}/>}/>
                 <Row className='routes-pagination'>
                     <Pagination size="lg">
