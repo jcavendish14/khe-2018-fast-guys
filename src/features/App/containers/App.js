@@ -13,8 +13,9 @@ class App extends Component {
 
   componentDidMount() {
     const { getNumOfRoutes, getRoutes, currentPage } = this.props;
-    getNumOfRoutes();
+    console.log('component mounting');
     getRoutes(currentPage, this.PAGE_LENGTH);
+    getNumOfRoutes();
   }
 
   componentDidUpdate(prevProps) {

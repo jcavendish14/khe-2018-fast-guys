@@ -10,6 +10,7 @@ const initialState = {
   isFetching: false,
   isFetchingRoutes: false,
   numOfRoutes: undefined,
+  routeObj: undefined,
   routes: [],
   routeSnapshots: [],
   currentPage: 1,
@@ -58,7 +59,7 @@ export function routes(state = initialState, action) {
       return {
         ...state,
         isFetching: false,
-        numOfRoutes: action.payload.numberRoutes
+        routeObj: action.payload
       };
     case ROUTES_BY_ID_ERROR:
       return {
