@@ -5,6 +5,7 @@ export const numOfRoutesSelector = createSelector(routesSelector, routes => rout
 export const currentPageSelector = createSelector(routesSelector, routes => routes.currentPage);
 export const routesByPageSelector = createSelector(routesSelector, routes => routes.routes);
 export const routeSnapshotSelector = createSelector(routesSelector, routes => routes.routeSnapshots);
+export const routeIsFetchingSelector = createSelector(routesSelector, routes => routes.isFetching || routes.isFetchingRoutes);
 
 export const routesOnSelectedPageSelector = createSelector(
     [currentPageSelector, routesByPageSelector],
@@ -19,7 +20,13 @@ export const routesOnSelectedPageSelector = createSelector(
 export const routesSnapshotsOnSelectedPageSelector = createSelector(
     [routeSnapshotSelector, routesOnSelectedPageSelector],
     (routeSnapshots, routes) => {
-        console.log(routeSnapshots);
         return routeSnapshots;
+    }
+)
+
+export const loadedPagesSelector = createSelector(
+    routesByPageSelector,
+    routes => {
+        return routes.map(route => route.pageNumber);
     }
 )

@@ -13,7 +13,7 @@ class RoutesContainer extends Component {
             const pageNum = i + 1;
             const isCurrentPage = pageNum === currentPage;
             paginationItems.push(
-                <PaginationItem active={isCurrentPage}>
+                <PaginationItem active={isCurrentPage} key={pageNum}>
                     <Link to={`/${pageNum}`} onClick={() => goToPage(pageNum)}>
                         <PaginationLink>
                             {pageNum}
