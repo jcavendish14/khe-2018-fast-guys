@@ -1,9 +1,31 @@
 .map-container {
-    
+    width:100%;
+    display: flex;
+    flex-direction: row;
 }
 
 .map {
-    width: 100%;
+    width: 80%;
     height: 500px;
     margin-top: 10px;
+}
+
+.map-info {
+    width: 20%;
+    margin-top: 10px;
+    margin: 10px;
+    box-shadow: 3px 3px 10px black;
+}
+
+.comment-text {
+    font-size: 10pt;
+}
+
+.comment-user-name {
+    margin-bottom: 3px;
+}
+
+body {
+    overflow-y: scroll;
+    max-height: 500px;
 }

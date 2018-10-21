@@ -12,7 +12,7 @@ export class Map extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { google } = this.props;
+    const { google, route } = this.props;
     if (google !== prevProps.google) {
       this.loadMap();
     }
@@ -25,7 +25,7 @@ export class Map extends Component {
     } = this.props;
     if (this.props && google) {
       const mapRef = this.map.current;
-      const { centerLat, centerLng, styles, zoom } = this.props;
+      const { centerLat, centerLng, styles, zoom, route } = this.props;
 
       const center = new maps.LatLng(centerLat, centerLng);
       const mapConfig = Object.assign(
@@ -39,7 +39,7 @@ export class Map extends Component {
       );
       this.map.current = new maps.Map(mapRef, mapConfig);
       var ctaLayer = new google.maps.KmlLayer({
-        url: 'https://venose-sample.000webhostapp.com/fast-guys-routes/Route-1/Route-1.kml',
+        url: route? route.kmlFile : '',
         map: this.map.current
       });
 

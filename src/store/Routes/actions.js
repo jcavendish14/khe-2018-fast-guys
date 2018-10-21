@@ -32,7 +32,7 @@ export function getRoutes(pageNumber, pageSize) {
     console.log('getting routes');
     return dispatch => {
         dispatch(routesRequest());
-        RoutesService.getRoutePage(pageNumber, pageSize)
+        RoutesService.getRoutePage(pageNumber - 1, pageSize)
             .then(res => {
                 console.log(res);
                 dispatch(routesSuccess({pageNumber: pageNumber, pageRoutes: res}));

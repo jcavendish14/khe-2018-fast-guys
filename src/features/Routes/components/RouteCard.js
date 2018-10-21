@@ -8,7 +8,7 @@ class RouteCard extends Component {
   render() {
     const { city, description, snapshotFile, distance, rating, state, username, routeId } = this.props;
     return (
-      <Link to={`/route/${routeId}`}>
+      <Link to={{'pathname': `/route/${routeId}`, 'state':{'routeId': routeId}}}>
         <Card className='route-card'>
           <CardImg top width="100%" src={snapshotFile} alt="Card image cap" />
           <CardBody>
