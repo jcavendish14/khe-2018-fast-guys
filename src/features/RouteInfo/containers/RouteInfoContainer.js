@@ -10,6 +10,7 @@ import { routeSelector } from '../../../store/Routes/selectors';
 import { Card, CardImg, CardText, CardBody,
     CardTitle, CardSubtitle } from 'reactstrap';
 import Rating from 'react-rating';
+import { BarLoader } from 'react-spinners';
 
 
 class RouteInfoContainer extends Component {
@@ -35,8 +36,9 @@ class RouteInfoContainer extends Component {
 
     render() {
         const {currentPage, google, route} = this.props;
-        if(!route){
-            return (<div>Loading...</div>)
+        const { routeId } = this.props.location.state;
+        if(!route || route.routeId !== routeId){
+            return (<BarLoader width={1000} />)
         }
         else {
             return (
@@ -93,5 +95,5 @@ const connectRouteInfo = connect(
   )(RouteInfoContainer);
 
   export default GoogleApiComponent({
-    //apiKey: 'AIzaSyDJWkGDQL8xicMCm3-cFeDoXueBLY60SKw',
+    apiKey: 'AIzaSyDJWkGDQL8xicMCm3-cFeDoXueBLY60SKw',
   })(connectRouteInfo);

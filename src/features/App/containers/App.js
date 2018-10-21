@@ -13,7 +13,6 @@ class App extends Component {
 
   componentDidMount() {
     const { getNumOfRoutes, getRoutes, currentPage } = this.props;
-    console.log('component mounting');
     getRoutes(currentPage, this.PAGE_LENGTH);
     getNumOfRoutes();
   }
@@ -21,8 +20,9 @@ class App extends Component {
   componentDidUpdate(prevProps) {
     const { currentPage, getRoutes, loadedPages } = this.props;
     if(currentPage !== prevProps.currentPage) {
-      if(!loadedPages.some(loadedPage => currentPage === loadedPage))
+      if(!loadedPages.some(loadedPage => currentPage === loadedPage)) {
       getRoutes(currentPage, this.PAGE_LENGTH);
+      }
     }
   }
 

@@ -96,7 +96,7 @@ export function routesIdError(error) {
 
 export function getRoutesId(routeId) {
     return dispatch => {
-        dispatch(routesRequest());
+        dispatch(routeIdRequest());
         RoutesService.getRouteById(routeId)
             .then(res => {
                 console.log(res);
