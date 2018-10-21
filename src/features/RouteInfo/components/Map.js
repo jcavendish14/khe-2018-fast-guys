@@ -38,6 +38,10 @@ export class Map extends Component {
         }
       );
       this.map.current = new maps.Map(mapRef, mapConfig);
+      var ctaLayer = new google.maps.KmlLayer({
+        url: 'https://venose-sample.000webhostapp.com/fast-guys-routes/Route-1/Route-1.kml',
+        map: this.map.current
+      });
 
       maps.event.trigger(mapRef, 'ready');
       this.forceUpdate();

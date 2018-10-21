@@ -14,12 +14,16 @@ class RouteInfoContainer extends Component {
                 <Link to={`/${currentPage}`}>
                     <Button color='primary'>Back to Routes</Button>
                 </Link>
-                <Map
-                    google={google}
-                    zoom={14}
-                    centerLat={37.774929}
-                    centerLng={-122.419416}
-                />
+                <div class='map-container'>
+                    <Map
+                        google={google}
+                        zoom={14}
+                        centerLat={37.774929}
+                        centerLng={-122.419416}
+                    />
+                    <div class='map-info'>
+                    </div>
+                </div>
             </div>
         );
     }
@@ -37,5 +41,5 @@ const connectRouteInfo = connect(
   )(RouteInfoContainer);
 
   export default GoogleApiComponent({
-    // apiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
+    //apiKey: 'AIzaSyDJWkGDQL8xicMCm3-cFeDoXueBLY60SKw',
   })(connectRouteInfo);

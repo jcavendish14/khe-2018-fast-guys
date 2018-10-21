@@ -3,11 +3,10 @@ import '../../../shared.scss';
 import RoutesContainer from '../../Routes/containers/RoutesContainer';
 import RouteInfoContainer from '../../RouteInfo/containers/RouteInfoContainer';
 import { connect } from 'react-redux';
-import { getRoutes, getNumOfRoutes } from '../../../store/Routes/actions';
+import { getRoutes, getNumOfRoutes, goToPage } from '../../../store/Routes/actions';
 import { numOfRoutesSelector, currentPageSelector, routesOnSelectedPageSelector } from '../../../store/Routes/selectors';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Navbar, NavbarBrand } from 'reactstrap';
-
 
 class App extends Component {
   componentDidMount() {
@@ -17,11 +16,11 @@ class App extends Component {
   }
 
   render() {
-    const { numOfRoutes, currentPage, routes } = this.props;
+    const { numOfRoutes, currentPage, routes, goToPage } = this.props;
     return (
       <React.Fragment>
-        <Navbar color="light" light expand="md">
-            <NavbarBrand href="/">Fast Guys</NavbarBrand>
+        <Navbar color="dark" dark expand="md">
+            <NavbarBrand>Fast Guys</NavbarBrand>
         </Navbar>
         <div className="app__container">
           <Router>
@@ -32,6 +31,7 @@ class App extends Component {
                   numOfRoutes={numOfRoutes}
                   currentPage={currentPage}
                   routes={routes}
+                  goToPage={goToPage}
                 />}
               />
               <Route path="/route/:routeId" render={props => 
@@ -58,7 +58,8 @@ const mapDispatchToProps = dispatch => ({
   getRoutes: pageNumber => {
       dispatch(getRoutes(pageNumber));
   },
-  getNumOfRoutes: () => {dispatch(getNumOfRoutes())}
+  getNumOfRoutes: () => {dispatch(getNumOfRoutes())},
+  goToPage: (pageNumber) => {dispatch(goToPage(pageNumber))}
 });
 
 export default connect(

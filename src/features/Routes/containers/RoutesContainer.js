@@ -6,15 +6,17 @@ import RoutesPage from '../../Routes/components/RoutesPage';
 
 class RoutesContainer extends Component {
     createPagination() {
-        const { numOfRoutes } = this.props;
+        const { currentPage, numOfRoutes, goToPage } = this.props;
         const numOfPages = Math.ceil(numOfRoutes / 9);
         let paginationItems = [];
         for(var i = 0; i < numOfPages; i++) {
+            const pageNum = i + 1;
+            const isCurrentPage = pageNum === currentPage;
             paginationItems.push(
-                <PaginationItem>
-                    <Link to={`/${i + 1}`}>
-                        <PaginationLink>
-                            {i + 1}
+                <PaginationItem active={isCurrentPage}>
+                    <Link to={`/${pageNum}`}>
+                        <PaginationLink onClick={goToPage(pageNum)}>
+                            {pageNum}
                         </PaginationLink>
                     </Link>
                 </PaginationItem>
@@ -29,7 +31,7 @@ class RoutesContainer extends Component {
             <Container>
                 <Route path="/:pageNum?" render={props => <RoutesPage {...props} routes={routes} />}/>
                 <Row className='routes-pagination'>
-                    <Pagination>
+                    <Pagination size="lg">
                         {this.createPagination()}
                     </Pagination>
                 </Row>
