@@ -6,11 +6,15 @@ import Rating from 'react-rating';
 
 class RouteCard extends Component {
   render() {
-    const { city, description, distance, rating, state, username, routeId } = this.props;
+    const { city, description, distance, rating, state, username, routeId, routeSnapshot } = this.props;
+    var url;
+    if(routeSnapshot.snapshot){
+      url = routeSnapshot.snapshot.fileName;
+    }
     return (
       <Link to={`/route/${routeId}`}>
         <Card className='route-card'>
-          <CardImg top width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" />
+          <CardImg top width="100%" src={url} alt="Card image cap" />
           <CardBody>
             <CardTitle>{`${distance} mi in ${city}, ${state}`}</CardTitle>
             <CardSubtitle>{`Created by: ${username}`}</CardSubtitle>

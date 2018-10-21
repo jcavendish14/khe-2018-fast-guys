@@ -24,10 +24,10 @@ class RoutesContainer extends Component {
     }
 
     render() {
-        const { routes } = this.props;
+        const { routes, routeSnapshots } = this.props;
         return (
             <Container>
-                <Route path="/:pageNum?" render={props => <RoutesPage {...props} routes={routes} />}/>
+                <Route path="/:pageNum?" render={props => <RoutesPage {...props} routes={routes} routeSnapshots={routeSnapshots}/>}/>
                 <Row className='routes-pagination'>
                     <Pagination>
                         {this.createPagination()}
